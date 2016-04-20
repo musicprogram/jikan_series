@@ -1,0 +1,228 @@
+
+  <p id="notice"><%= notice %></p>
+<% a = 0 %>
+<script>
+  $(document).on('page:change', function () {
+    
+
+  });
+</script>
+
+
+<div class="foto">
+         
+          <%= image_tag @series_temp.imagen %>  
+          
+       </div>
+       <h1 class="titulo"><%= @series_temp.name %></h1> 
+    <br> <br>
+
+
+
+<div class="container-fluid">
+        <%     youtube =  @series_temp.video.split("=").last
+               youtube =  "https://www.youtube.com/embed/" + youtube  
+              %>
+   
+         <iframe class="video_y1" src="<%= youtube %>" frameborder="0" allowfullscreen></iframe>
+      
+</div>
+
+<div class="container-fluid">
+  <div class="col-lg-6">
+    <div class="hidden-xs">
+  <dl class="dl-horizontal let">
+    <dt>Tag</dt>
+    <dd><%= @series_temp.tag %></dd>
+    <dt>Año</dt>
+    <dd><%= @series_temp.year %></dd>
+    <dt>Director</dt>
+    <dd><%= @series_temp.director %></dd>
+    <dt>Duraciòn</dt>
+    <dd><%= @series_temp.duration %></dd>
+    <dt>Paìs</dt>
+    <dd><%= @series_temp.country %></dd>
+    <dt>Descargar</dt>
+    <dd><%= @series_temp.link %></dd>
+    <dt>Descripciòn</dt>
+    <dd><%= @series_temp.description %></dd>
+  </dl>
+</div>
+
+  </div>
+  <div class="col-xs-12 col-lg-6">
+    <br> <br>
+  <div class="descripcion scroll">
+  
+         
+     
+     
+<div class="container-fluid marge">
+  
+     <% @series_temp.seasons.each do |season| %>
+     
+
+         <div class="row">
+            <div class="col-md-12 portfolio-item_1">
+           
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                <div class="foto baja">
+                  <%= image_tag season.imagen, class:'img-responsive  baja nn' %>
+<br>
+
+
+        
+                </div>
+                
+                </div>
+                <div class="col-sm-12 col-md-6">
+              <% 
+                unless season.video != nil
+                 youtube_1 = season.video.split("=").last
+                 youtube_1 =  "https://www.youtube.com/embed/" + youtube_1
+                end 
+              %>
+              <div class="embed-container baja bb">
+              <iframe class="" src="<%= youtube_1 %>" frameborder="0" allowfullscreen></iframe>
+               </div>
+
+
+                </div>
+               
+              </div>
+                
+             
+                  
+                  
+            <br></br>
+            
+            
+            </div>
+           
+            </div>  
+          
+                  
+                  
+                
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="cuadro">
+                  
+               <table class="table ">
+                  <thead>
+                    <tr>
+                      <th>Temporada</th>
+                      <th>Duraciòn</th>
+                      <th>Tags</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= season.name %></td>
+                      <td><%= season.duration %></td>
+                      <td><%= season.tag %></td>
+                    </tr>
+                  </tbody>
+                 </table> 
+                  <h4>Descripciòn</h4>
+                  <p>
+                   <%= season.description %> 
+                  </p>
+                
+             
+                </div>
+                
+                
+              </div>
+            </div>  
+    <br></br>
+     <% end %> 
+       
+</div>
+
+   
+
+    
+
+     
+  
+  </div>
+</div>
+
+  </div>
+  
+  
+  
+  
+  
+  
+  
+
+    
+<div class="container">
+  
+<hr>
+<h1 class="tex-center">Capìtulos</h1>
+</div>
+
+
+
+
+
+
+ 
+    <div class="container-fluid">
+      <section id="pinBoot">
+       <% @series_temp.seasons.each do |season| %>
+       
+      
+       
+      <% season.chapters.each do |chapter| %>
+      
+      <article class="white-panel">
+        <h2 class="centrar"><%= chapter.season.name %></h2>
+        <h4 class="centrar"><%= chapter.name %></h4>
+        <p class="centrar"><%= chapter.duration %></p>
+      
+        
+        
+      <p class="centrar">
+          <%= chapter.description  %>
+   
+              
+        </p>
+              <div class="embed-container">
+                <iframe class="" src="<%= chapter.link %>" frameborder="0" allowfullscreen></iframe>
+
+              </div>
+        
+        
+      </article>
+     
+      <% end %>
+     
+
+      <% end %>
+
+    </section>
+
+    </div>
+
+
+
+
+
+
+
+<div class="container">
+  
+
+<%= link_to 'Edit', edit_series_temp_path(@series_temp) %> |
+<%= link_to 'Back', series_temps_path %>
+
+</div>
+
+
+
+ 
