@@ -1,0 +1,67 @@
+
+
+<style>
+  .user_name{
+    font-size:14px;
+    font-weight: bold;
+}
+.comments-list .media{
+    border-bottom: 1px dotted #ccc;
+}
+</style>
+
+                <div class="">
+                  <div class="page-header">
+                    <h1><small class="pull-right"><%= @movie.comments.count %> comentarios </small> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+  Agregar comentario y califica la película
+</button> </h1>
+                  </div> 
+                   <div class="comments-list">
+                     <% @movie.comments.order(created_at: "DESC").each do |comment| %>
+                       <div class="media">
+                           <p class="pull-right"><small>Comentado hace <%= distance_of_time_in_words(comment.created_at - Time.now) %></small></p>
+                            <a class="media-left" href="#">
+                              <%= image_tag("user-icon.png")%>
+                            </a>
+                            <div class="media-body">
+                                
+                              <h4 class="media-heading user_name"><b><%= comment.user.upcase rescue nil %></b></h4>
+                              <%= comment.body %> <br>
+                            <% if comment.likes == "mala" %>
+                              <%= image_tag("star1.png", class:'estrella') %>
+                            <% elsif comment.likes == "regular" %> 
+                              <% 2.times.each do |x|%>
+                                 <%= image_tag("star1.png", class:'estrella') %>
+                              <% end  %>
+                            <% elsif comment.likes == "buena" %>
+                              <% 3.times.each do |x|%>
+                                 <%= image_tag("star1.png", class:'estrella') %>
+                              <% end  %>
+                            <% elsif comment.likes == "buenisima" %> 
+                              <% 4.times.each do |x|%>
+                                 <%= image_tag("star1.png", class:'estrella') %>
+                              <% end  %>
+                            <% elsif comment.likes == "excelente" %> 
+                             <% 5.times.each do |x|%>
+                                 <%= image_tag("star1.png", class:'estrella') %>
+                              <% end  %>
+                            <% end %>
+                            
+                            </div>
+                          <% if user_signed_in? %>  
+                            <%= link_to 'Eliminar', [comment.movie, comment],
+                           method: :delete,
+                           data: { confirm: 'Estas Seguro?' } %>
+                          <% end %> 
+                          </div>
+                          
+                      <% end %>
+                       
+                   </div>
+              
+                    
+                    
+                </div>
+       
+       
+

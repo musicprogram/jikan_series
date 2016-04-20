@@ -1,0 +1,166 @@
+
+<style type="text/css">
+.carousel{
+    background: #2f4357;
+    margin-top: 20px;
+    
+}
+.carousel .item img{
+    margin: 0 auto; /* Align slide image horizontally center */
+}
+.bs-example{
+	margin: 20px;
+}
+img{
+  height: 500px;
+  
+}
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+         $("#myCarousel").carousel();
+    });
+</script>
+
+<div class="bs-example">
+    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+    	<!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>   
+        <!-- Wrapper for carousel items -->
+        <div class="carousel-inner">
+            <div class="active item">
+                <%= image_tag("banner_1.png", class:'img-responsive') %>
+         		<div class="carousel-caption">
+                  
+                </div>
+            </div>
+            <div class="item">
+               <%= image_tag("logojikan1.jpg", class:'img-responsive') %>
+                <div class="carousel-caption">
+                 
+                </div>
+            </div>
+            <div class="item">
+                <%= image_tag("logojikan2.jpg", class:'img-responsive') %>
+                <div class="carousel-caption">
+                 
+                </div>
+            </div>
+            <div class="item">
+                <%= image_tag("logojikan3.jpg", class:'img-responsive') %>
+                <div class="carousel-caption">
+                 
+                </div>
+            </div>
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div class="container">
+   
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-6">
+                 <h1 class="page-header"><%= image_tag('logojikan.png',class:'logo_1') %>Películas
+                 <small>Recientes</small>
+                   
+                </h1>
+              </div>
+              <div class="col-md-6">
+                <% if user_signed_in? %>
+                
+                 <%= link_to image_tag('cinta.png',class:'nuevo'), new_movie_path %>
+                 
+                <% end %> 
+              </div>
+               
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        
+           <% @movies.each do |movie| %>
+            
+            
+           <div class="row">
+            <div class="col-md-12 portfolio-item">
+           
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <%= link_to  movie do %>
+                   <%= image_tag movie.avatar, class:'img-responsive  baja' %>
+                  <% end %>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                <div class="embed-container baja bb">    
+                 <iframe src="<%= movie.video %>" frameborder="0" allowfullscreen></iframe>
+                </div> 
+                </div>
+              </div>
+                
+               
+                <h3><%= link_to  movie do %>
+                      <%= movie.name %>
+                    <% end %>
+                </h3>
+                
+                <p><%= movie.description %></p>
+                  <% if user_signed_in? %>
+                    <td><%= link_to 'Editar', edit_movie_path(movie) %></td>
+                    <td><%= link_to 'Eliminar', movie, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
+                  
+                  
+                  
+                  <% end %>
+            <br></br>
+            
+            
+            </div>
+           
+            </div>
+          <% end %>  
+        
+        <!-- /.row -->
+        
+        
+        
+        
+
+
+  <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>
+ <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; JikanSeries 2016</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+
+
+</body>
+
+</html>
+

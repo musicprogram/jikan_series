@@ -1,0 +1,92 @@
+<div class="">
+  <div class="container-fluid">
+    <div class="col-md-4">
+<%= form_for(@movie) do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<br>
+  <div class="field">
+    <%= f.label :título_de_la_película %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :imagen %><br>
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :link_de_vídeo %><br>
+    <%= f.text_field :link, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :duración %><br>
+    <%= f.text_field :duration, class: 'form-control' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :link_de_youtube %><br>
+    <%= f.text_field :video, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :tag %><br>
+    <%= f.text_field :tag, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :año %><br>
+    <%= f.text_field :year, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :director %><br>
+    <%= f.text_field :director, class: 'form-control' %>
+  </div>
+  
+    </div>
+    <br>
+    <div class="col-md-4">
+
+  <div class="field">
+    <%= f.label :país %><br>
+    <%= f.text_field :country, class: 'form-control' %>
+  </div>
+  <div class="field">
+       <%= f.label :category %><br>                    
+      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "Seleccion Categoría"},{class: "form-control"} %>
+  </div>
+  <div class="field">
+    <%= f.label :descripción %><br>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :actors %><br>
+    <%= f.text_area :actors, class: 'form-control' %>
+  </div>
+  
+    
+
+  
+  <br>
+  <div class="actions">
+    <%= f.submit "Guardar", class:'btn btn-default btn-lg btn-block' %>
+  </div>
+<% end %>
+
+    </div>
+    <div class="col-md-4">
+      
+    </div>
+    
+    
+    
+    
+  </div>
+</div>
+

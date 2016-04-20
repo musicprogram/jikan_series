@@ -1,0 +1,122 @@
+<%= form_for(@series_temp) do |f| %>
+  <% if @series_temp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@series_temp.errors.count, "error") %> prohibited this series_temp from being saved:</h2>
+
+      <ul>
+      <% @series_temp.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name , class: 'form-control' %>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="field">
+          <%= f.label :link %><br>
+          <%= f.text_field :link, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.label :video %><br>
+        <%= f.text_field :video, class: 'form-control' %>
+      </div>
+  
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.label :tag %><br>
+        <%= f.text_field :tag , class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_area :description , class: 'form-control'%>
+      </div>
+    </div>
+    <div class="col-md-4">
+      
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.text_field :year , class: 'form-control' %>
+  </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="field">
+      <%= f.label :director %><br>
+      <%= f.text_field :director, class: 'form-control'%>
+    </div>
+  
+    </div>
+    <div class="col-md-4">
+       <div class="field">
+      <%= f.label :duration %><br>
+      <%= f.text_field :duration, class: 'form-control' %>
+    </div>
+    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.label :country %><br>
+        <%= f.text_field :country, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field">
+    <%= f.label :imagen %><br>
+    <%= f.file_field :imagen, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :baner %><br>
+    <%= f.file_field :baner, class: 'form-control' %>
+  </div>
+
+
+  
+  <br>
+  
+  <div class="container-fluid">
+    
+  <div id="season">
+    <%= f.fields_for :seasons do |season| %>
+     <%= render 'season_fields', f: season %>
+    <% end %>     
+    <div class="links">
+      <%= link_to_add_association 'Agregar Temporada', f, :seasons %>
+
+    </div>
+     
+  </div>
+  
+  </div>
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+

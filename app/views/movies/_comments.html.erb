@@ -1,0 +1,18 @@
+<%= form_for([@movie, @movie.comments.build]) do |f| %>
+  <p>
+    <%= f.label :nombre_de_usuario %><br>
+    <%= f.text_field :user, class:'form-control' %>
+  </p>
+  <p>
+    <%= f.label :Mensaje %><br>
+    <%= f.text_area :body, class:'form-control' %>
+  </p>
+  
+  <p>
+    <%= f.label :Puntuación_de_la_película %><br>
+    <%= f.select :likes, Comment.likes.keys,{prompt: "Seleccione"}, {class: "form-control"} %>
+  </p>
+  <p>
+     <%= f.submit "Guardar", class:'btn btn-default btn-lg btn-block' %>
+  </p>
+<% end %>
