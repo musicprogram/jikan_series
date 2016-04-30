@@ -78,13 +78,13 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
               <% 
-                unless season.video != nil
+                
                  youtube_1 = season.video.split("=").last
-                 youtube_1 =  "https://www.youtube.com/embed/" + youtube_1
-                end 
+                 youtube =  "https://www.youtube.com/embed/" + youtube_1
+             
               %>
               <div class="embed-container baja bb">
-              <iframe class="" src="<%= youtube_1 %>" frameborder="0" allowfullscreen></iframe>
+              <iframe class="" src="<%= youtube %>" frameborder="0" allowfullscreen></iframe>
                </div>
 
 
@@ -215,10 +215,14 @@
 
 
 <div class="container">
-  
+   <% if user_signed_in? %>
+    
+   <%= link_to 'Edit', edit_series_temp_path(@series_temp) %> |
+  <%= link_to 'Back', series_temps_path %>
+     
+    <% end %> 
 
-<%= link_to 'Edit', edit_series_temp_path(@series_temp) %> |
-<%= link_to 'Back', series_temps_path %>
+
 
 </div>
 

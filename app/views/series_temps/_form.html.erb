@@ -1,4 +1,8 @@
-<%= form_for(@series_temp) do |f| %>
+
+
+ <% if user_signed_in? %>
+    
+  <%= form_for(@series_temp) do |f| %>
   <% if @series_temp.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@series_temp.errors.count, "error") %> prohibited this series_temp from being saved:</h2>
@@ -15,7 +19,7 @@
     <div class="col-md-4">
         <div class="field">
           <%= f.label :name %><br>
-          <%= f.text_field :name , class: 'form-control' %>
+          <%= f.text_field :name , class: 'form-control', :required => true %>
         </div>
     </div>
     <div class="col-md-4">
@@ -27,7 +31,7 @@
     <div class="col-md-4">
       <div class="field">
         <%= f.label :video %><br>
-        <%= f.text_field :video, class: 'form-control' %>
+        <%= f.text_field :video, class: 'form-control', :required => true %>
       </div>
   
     </div>
@@ -84,11 +88,11 @@
 
 <div class="field">
     <%= f.label :imagen %><br>
-    <%= f.file_field :imagen, class: 'form-control' %>
+    <%= f.file_field :imagen, class: 'form-control', :required => true %>
   </div>
   <div class="field">
     <%= f.label :baner %><br>
-    <%= f.file_field :baner, class: 'form-control' %>
+    <%= f.file_field :baner, class: 'form-control', :required => true %>
   </div>
 
 
@@ -116,6 +120,8 @@
   </div>
 <% end %>
 
+     
+    <% end %> 
 
 
 
