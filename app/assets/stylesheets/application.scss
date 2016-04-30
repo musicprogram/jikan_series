@@ -96,7 +96,7 @@ footer {
   margin-bottom: 25px;
     
   border-radius: 4px;
-  background-image:url("bane.jpg");
+  background: image-url("bane.jpg");
   -webkit-box-shadow: 0px -4px 13px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px -4px 13px 1px rgba(0,0,0,0.75);
   box-shadow: 0px -4px 13px 1px rgba(0,0,0,0.75);
@@ -122,7 +122,7 @@ footer {
   margin-bottom: 25px;
     
   border-radius: 4px;
-  background-image:url("banner_1.png");
+  background: image-url("banner_1.png");
   -webkit-box-shadow: 0px -4px 13px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px -4px 13px 1px rgba(0,0,0,0.75);
   box-shadow: 0px -4px 13px 1px rgba(0,0,0,0.75);
@@ -145,7 +145,7 @@ footer {
 
 
 .fondo_i{
-  background-image:url('fondoshow.png');
+  background: image-url('fondoshow.png');
     /* Nos aseguramos que la imagen de fondo este centrada vertical y
     horizontalmente en todo momento */
   background-position: center center;
@@ -294,7 +294,7 @@ img {
 
 
   .fondoform{
-  background-image: url("mary.png") ;
+  background: image-url("mary.png") ;
   /* Nos aseguramos que la imagen de fondo este centrada vertical y
     horizontalmente en todo momento */
   background-position: center center;
