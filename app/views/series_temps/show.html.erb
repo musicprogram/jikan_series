@@ -43,7 +43,7 @@
     <dt>Paìs</dt>
     <dd><%= @series_temp.country %></dd>
     <dt>Descargar</dt>
-    <dd><%= @series_temp.link %></dd>
+    <dd><a target="_blank" href="<%= @series_temp.link %>"> Descargar</a></dd>
     <dt>Descripciòn</dt>
     <dd><%= @series_temp.description %></dd>
   </dl>
@@ -59,7 +59,7 @@
      
 <div class="container-fluid marge">
   
-     <% @series_temp.seasons.each do |season| %>
+     <% @series_temp.seasons.order('id ASC').each do |season| %>
      
 
          <div class="row">
