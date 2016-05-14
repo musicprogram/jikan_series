@@ -86,7 +86,7 @@ img{
                 </h1>
               </div>
               <div class="col-md-6">
-                <% if user_signed_in? %>
+                <% if current_user == User.find(1) %>
                 
                  <%= link_to image_tag('cinta.png',class:'nuevo'), new_series_temp_path %>
                  
@@ -112,7 +112,8 @@ img{
               <div class="row">
                 <div class="col-sm-12 col-md-6">
                   <%= link_to  series_temp do %>
-                   <%= image_tag series_temp.baner, class:'img-responsive  baja nn' %>
+                   <img src="<%= series_temp.baner %>" class="img-responsive  baja nn">
+                   
                   <% end %>
                 </div>
                 <div class="col-sm-12 col-md-6">
@@ -129,7 +130,7 @@ img{
                 </h3>
                 
                 <p><%= series_temp.description %></p>
-                  <% if user_signed_in? %>
+                  <% if current_user == User.find(1) %>
                     <td><%= link_to 'Editar', edit_series_temp_path(series_temp) %></td>
                     <td><%= link_to 'Eliminar', series_temp, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
                   

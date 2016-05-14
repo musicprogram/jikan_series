@@ -10,8 +10,8 @@
 
 
 <div class="foto">
+          <img src=" <%= @series_temp.imagen %>">
          
-          <%= image_tag @series_temp.imagen %>  
           
        </div>
        <h1 class="titulo"><%= @series_temp.name %></h1> 
@@ -68,10 +68,10 @@
               <div class="row">
                 <div class="col-sm-12 col-md-6">
                 <div class="foto baja">
-                  <%= image_tag season.imagen, class:'img-responsive  baja nn' %>
+                  
+                  <img src="<%= season.imagen %>" class="img-responsive  baja nn">
+                  
 <br>
-
-
         
                 </div>
                 
@@ -215,7 +215,7 @@
 
 
 <div class="container">
-   <% if user_signed_in? %>
+   <% if current_user == User.find(1) %>
     
    <%= link_to 'Edit', edit_series_temp_path(@series_temp) %> |
   <%= link_to 'Back', series_temps_path %>

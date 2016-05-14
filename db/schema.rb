@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312153333) do
+ActiveRecord::Schema.define(version: 20160514200243) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -25,15 +28,11 @@ ActiveRecord::Schema.define(version: 20160312153333) do
     t.string   "link"
     t.text     "description"
     t.string   "duration"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "imagen_file_name"
-    t.string   "imagen_content_type"
-    t.integer  "imagen_file_size"
-    t.datetime "imagen_updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "chapters", ["season_id"], name: "index_chapters_on_season_id"
+  add_index "chapters", ["season_id"], name: "index_chapters_on_season_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "user"
@@ -44,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160312153333) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "comments", ["movie_id"], name: "index_comments_on_movie_id"
+  add_index "comments", ["movie_id"], name: "index_comments_on_movie_id", using: :btree
 
   create_table "movies", force: :cascade do |t|
     t.string   "name"
@@ -75,15 +74,12 @@ ActiveRecord::Schema.define(version: 20160312153333) do
     t.text     "description"
     t.string   "year"
     t.string   "duration"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "imagen_file_name"
-    t.string   "imagen_content_type"
-    t.integer  "imagen_file_size"
-    t.datetime "imagen_updated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "imagen"
   end
 
-  add_index "seasons", ["series_temp_id"], name: "index_seasons_on_series_temp_id"
+  add_index "seasons", ["series_temp_id"], name: "index_seasons_on_series_temp_id", using: :btree
 
   create_table "series_temps", force: :cascade do |t|
     t.string   "name"
@@ -95,16 +91,10 @@ ActiveRecord::Schema.define(version: 20160312153333) do
     t.string   "director"
     t.string   "duration"
     t.string   "country"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "imagen_file_name"
-    t.string   "imagen_content_type"
-    t.integer  "imagen_file_size"
-    t.datetime "imagen_updated_at"
-    t.string   "baner_file_name"
-    t.string   "baner_content_type"
-    t.integer  "baner_file_size"
-    t.datetime "baner_updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "baner"
+    t.string   "imagen"
   end
 
   create_table "users", force: :cascade do |t|
@@ -122,7 +112,10 @@ ActiveRecord::Schema.define(version: 20160312153333) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "chapters", "seasons"
+  add_foreign_key "comments", "movies"
+  add_foreign_key "seasons", "series_temps"
 end

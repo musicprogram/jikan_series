@@ -87,7 +87,7 @@
     </div>
   </div>
   
-<% if user_signed_in? %>
+<% if current_user == User.find(1) %>
   <%= link_to 'Editar', edit_movie_path(@movie) %> |
   <%= link_to 'Atras', movies_path %>
 <% end %>

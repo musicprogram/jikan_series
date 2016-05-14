@@ -1,6 +1,6 @@
 
 
- <% if user_signed_in? %>
+ <% if current_user == User.find(1) %>
     
   <%= form_for(@series_temp) do |f| %>
   <% if @series_temp.errors.any? %>
@@ -85,15 +85,24 @@
     </div>
   </div>
 </div>
+<br>
 
-<div class="field">
-    <%= f.label :imagen %><br>
-    <%= f.file_field :imagen, class: 'form-control', :required => true %>
-  </div>
-  <div class="field">
-    <%= f.label :baner %><br>
-    <%= f.file_field :baner, class: 'form-control', :required => true %>
-  </div>
+    <div class="container-fluid">
+      <div class="col-md-6">
+   
+
+    <%= f.label :banner_1280x720px %><br>
+    <%= f.text_field :baner, class: 'form-control' %>  
+    </div>
+  
+  <div class="col-md-6">
+        <%= f.label :imagen_logo_mitad_850x80px %>
+      <%= f.text_field :imagen, class:'form-control' %>
+    </div>
+  
+    </div>
+
+
 
 
   
@@ -106,7 +115,7 @@
      <%= render 'season_fields', f: season %>
     <% end %>     
     <div class="links">
-      <%= link_to_add_association 'Agregar Temporada', f, :seasons %>
+      <%= link_to_add_association 'Agregar Temporada', f, :seasons , 'data-association-insertion-method'    => 'prepend' %>
 
     </div>
      

@@ -82,7 +82,7 @@ img{
                 </h1>
               </div>
               <div class="col-md-6">
-                <% if user_signed_in? %>
+                <% if current_user == User.find(1) %>
                 
                  <%= link_to image_tag('cinta.png',class:'nuevo'), new_movie_path %>
                  
@@ -121,7 +121,7 @@ img{
                 </h3>
                 
                 <p><%= movie.description %></p>
-                  <% if user_signed_in? %>
+                  <% if current_user == User.find(1) %>
                     <td><%= link_to 'Editar', edit_movie_path(movie) %></td>
                     <td><%= link_to 'Eliminar', movie, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
                   

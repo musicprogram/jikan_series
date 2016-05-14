@@ -59,11 +59,14 @@
      <div class="col-md-4">
        <div class="field">
     <%= f.label :imagen %><br>
-    <%= f.file_field :imagen, class: 'form-control', :required => true %>
+    <%= f.text_field :imagen, class: 'form-control' %>
   </div>
 
      </div>
-     <div class="col-md-4"></div>
+     <div class="col-md-4">
+    
+
+     </div>
    </div>
  </div>
  
@@ -86,7 +89,7 @@
      <%= render 'chapter_fields', f: chapter %>
     <% end %>     
     <div class="links">
-      <%= link_to_add_association 'Agregar Capìtulo', f, :chapters %>
+      <%= link_to_add_association 'Agregar Capìtulo', f, :chapters , 'data-association-insertion-method'    => 'prepend' %>
 
     </div>
      
