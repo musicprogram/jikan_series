@@ -151,8 +151,93 @@
   
   
   
+  <br>
   
+<div class="container">
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Comentarios
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+       
+      <div class="">
+        <div class="col-md-9">
+          
+       
+          <% @series_temp.comentarios.each do |comment| %>
+           
+
+            <blockquote>
+            <p><b><%= comment.user %></b></p>
+            <p>
+              <%= comment.description %>
+            </p>
+          </blockquote>
+          
+             <% if current_user == User.find(1) %>
+    
+          
+             <%= link_to 'Destroy Comment', [comment.series_temp, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+
+              <% end %>
+          <% end %>
+
   
+
+        </div>
+        <div class="col-md-3">
+          <%= form_for([@series_temp, @series_temp.comentarios.build]) do |f| %>
+            <p>
+              <%= f.label :usuario %><br>
+              <%= f.text_field :user %>
+            </p>
+            <p>
+              <%= f.label :comentario %><br>
+              <%= f.text_area :description %>
+            </p>
+            <p>
+              <%= f.submit "Agregar comentario" %>
+            </p>
+          <% end %>
+
+
+  
+
+        </div>
+      </div>
+
+
+
+
+
+       
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
   
   
 
@@ -208,6 +293,11 @@
 
               </div>
         
+
+
+
+
+
         
       </article>
      

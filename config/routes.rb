@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :series_temps
+  resources :series_temps do
+    resources :comentarios
+  end
  
   devise_for :users
   resources :categories

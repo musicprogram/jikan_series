@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514200243) do
+ActiveRecord::Schema.define(version: 20160530201509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,26 @@ ActiveRecord::Schema.define(version: 20160514200243) do
   end
 
   add_index "chapters", ["season_id"], name: "index_chapters_on_season_id", using: :btree
+
+  create_table "comentarios", force: :cascade do |t|
+    t.string   "user"
+    t.text     "description"
+    t.integer  "series_temp_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "comentarios", ["series_temp_id"], name: "index_comentarios_on_series_temp_id", using: :btree
+
+  create_table "comment_series", force: :cascade do |t|
+    t.string   "user"
+    t.text     "description"
+    t.integer  "series_temp_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "comment_series", ["series_temp_id"], name: "index_comment_series_on_series_temp_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "user"
@@ -116,6 +136,8 @@ ActiveRecord::Schema.define(version: 20160514200243) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "chapters", "seasons"
+  add_foreign_key "comentarios", "series_temps"
+  add_foreign_key "comment_series", "series_temps"
   add_foreign_key "comments", "movies"
   add_foreign_key "seasons", "series_temps"
 end
