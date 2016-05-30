@@ -4,13 +4,13 @@ class SeriesTempsController < ApplicationController
   # GET /series_temps
   # GET /series_temps.json
   def index
-    @series_temps = SeriesTemp.all
+    @series_temps = SeriesTemp.all.paginate(:page => params[:page], :per_page => 10).order(name: :asc).where(["name LIKE ?","%#{params[:search]}%"])
   end
 
   # GET /series_temps/1
   # GET /series_temps/1.json
   def show
-    
+   @capitulos = @series_temp.seasons.paginate(:page => params[:page], :per_page => 1).order(name: :asc)
   end
   
 

@@ -84,6 +84,13 @@ img{
                  <small>Recientes</small>
                    
                 </h1>
+
+            <%= form_tag series_temps_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search]%>
+              <%= submit_tag "Buscar" %>
+            <% end %>
+            <%= will_paginate @series_temps, renderer: BootstrapPagination::Rails %>
+
               </div>
               <div class="col-md-6">
                 <% if current_user == User.find(1) %>
@@ -95,6 +102,8 @@ img{
                
             </div>
         </div>
+
+        <br>
         <!-- /.row -->
 
         <!-- Projects Row -->

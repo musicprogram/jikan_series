@@ -42,8 +42,6 @@
     <dd><%= @series_temp.duration %></dd>
     <dt>Paìs</dt>
     <dd><%= @series_temp.country %></dd>
-    <dt>Descargar</dt>
-    <dd><a target="_blank" href="<%= @series_temp.link %>"> Descargar</a></dd>
     <dt>Descripciòn</dt>
     <dd><%= @series_temp.description %></dd>
   </dl>
@@ -59,7 +57,7 @@
      
 <div class="container-fluid marge">
   
-     <% @series_temp.seasons.order('id ASC').each do |season| %>
+     <% @series_temp.seasons.order('name DESC').each do |season| %>
      
 
          <div class="row">
@@ -112,14 +110,14 @@
                   <thead>
                     <tr>
                       <th>Temporada</th>
-                      <th>Duraciòn</th>
+                     
                       <th>Tags</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td><%= season.name %></td>
-                      <td><%= season.duration %></td>
+           
                       <td><%= season.tag %></td>
                     </tr>
                   </tbody>
@@ -162,7 +160,17 @@
 <div class="container">
   
 <hr>
-<h1 class="tex-center">Capìtulos</h1>
+<h1 class="tex-center">Capítulos</h1>
+<div class="col-md-4">
+  <h2 class="text-right">Temporadas</h2>
+</div>
+<div class="col-md-4">
+  <%= will_paginate @capitulos, renderer: BootstrapPagination::Rails %>
+</div>
+
+
+
+  
 </div>
 
 
@@ -173,16 +181,17 @@
  
     <div class="container-fluid">
       <section id="pinBoot">
-       <% @series_temp.seasons.each do |season| %>
+       <% @capitulos.each do |season| %>
        
       
        
       <% season.chapters.each do |chapter| %>
       
       <article class="white-panel">
-        <h2 class="centrar"><%= chapter.season.name %></h2>
-        <h4 class="centrar"><%= chapter.name %></h4>
+        <h2 class="centrar">Temporada <%= chapter.season.name %></h2>
+        <h4 class="centrar">Capítulo <%= chapter.name %><a target="_blank" href="<%= chapter.duration %>"> Descargar</a></h4>
         <p class="centrar"><%= chapter.duration %></p>
+
       
         
         
@@ -191,6 +200,7 @@
    
               
         </p>
+
               <div class="embed-container">
                 <iframe class="" src="<%= chapter.link %>" frameborder="0" allowfullscreen></iframe>
 
@@ -205,7 +215,6 @@
       <% end %>
 
     </section>
-
     </div>
 
 
