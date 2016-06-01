@@ -74,6 +74,6 @@ class SeriesTempsController < ApplicationController
     def series_temp_params
       params.require(:series_temp).permit(:name, :link, :video, :tag, :description, :year, :director, :duration, :country,  :baner,:imagen, 
         seasons_attributes: [:id, :name, :link, :video, :tag, :description, :year, :imagen, :_destroy , 
-        chapters_attributes: [:id, :name,  :link, :description, :_destroy] ])
+        chapters_attributes: [:id, :name,  :link, :description, :duration, :_destroy] ])
     end
 end

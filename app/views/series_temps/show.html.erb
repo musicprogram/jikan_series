@@ -277,23 +277,21 @@
       <article class="white-panel">
         <h2 class="centrar">Temporada <%= chapter.season.name %></h2>
         <h4 class="centrar">Capítulo <%= chapter.name %><a target="_blank" href="<%= chapter.duration %>"> Descargar</a></h4>
-        <p class="centrar"><%= chapter.duration %></p>
+        <p class="centrar"><%= chapter.link %></p>
 
+        
       
-        
-        
-      <p class="centrar">
-          <%= chapter.description  %>
-   
-              
-        </p>
 
               <div class="embed-container">
                 <iframe class="" src="<%= chapter.link %>" frameborder="0" allowfullscreen></iframe>
 
               </div>
         
-
+<p class="centrar">
+          <%= chapter.description  %>
+   
+              
+        </p>
 
 
 
