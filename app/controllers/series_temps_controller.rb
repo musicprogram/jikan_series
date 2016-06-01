@@ -10,7 +10,7 @@ class SeriesTempsController < ApplicationController
   # GET /series_temps/1
   # GET /series_temps/1.json
   def show
-   @capitulos = @series_temp.seasons.paginate(:page => params[:page], :per_page => 1).order(name: :asc)
+   @capitulos = @series_temp.seasons.paginate(:page => params[:page], :per_page => 1).order(orden: :asc)
   end
   
 
@@ -73,7 +73,7 @@ class SeriesTempsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def series_temp_params
       params.require(:series_temp).permit(:name, :link, :video, :tag, :description, :year, :director, :duration, :country,  :baner,:imagen, 
-        seasons_attributes: [:id, :name, :link, :video, :tag, :description, :year, :imagen, :_destroy , 
-        chapters_attributes: [:id, :name,  :link, :description, :duration, :_destroy] ])
+        seasons_attributes: [:id, :name, :link, :video, :tag, :description, :year, :imagen, :orden ,:_destroy , 
+        chapters_attributes: [:id, :name,  :link, :description, :duration, :orden, :_destroy] ])
     end
 end

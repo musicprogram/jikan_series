@@ -275,9 +275,14 @@
       <% season.chapters.each do |chapter| %>
       
       <article class="white-panel">
-        <h2 class="centrar">Temporada <%= chapter.season.name %></h2>
-        <h4 class="centrar">Capítulo <%= chapter.name %><a target="_blank" href="<%= chapter.duration %>"> Descargar</a></h4>
-        <p class="centrar"><%= chapter.link %></p>
+        <h2 class="centrar">Temporada <%= chapter.season.orden %></h2>
+        <h4 class="centrar">Capítulo <%= chapter.orden %><a target="_blank" href="<%= chapter.duration %>"> Descargar</a></h4>
+       <p class="centrar">
+          <%= chapter.description  %>
+   
+              
+        </p>
+
 
         
       
@@ -287,11 +292,6 @@
 
               </div>
         
-<p class="centrar">
-          <%= chapter.description  %>
-   
-              
-        </p>
 
 
 
