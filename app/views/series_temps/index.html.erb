@@ -2,159 +2,193 @@
 
 
 <style type="text/css">
-.carousel{
+  .carousel{
     background: #2f4357;
     margin-top: 20px;
     
-}
-.carousel .item img{
+  }
+  .carousel .item img{
     margin: 0 auto; /* Align slide image horizontally center */
-}
-.bs-example{
-	margin: 20px;
-}
-img{
+  }
+  .bs-example{
+   margin: 20px;
+ }
+ img{
   height: 500px;
   
 }
 </style>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-         $("#myCarousel").carousel();
-    });
+  $(document).ready(function(){
+   $("#myCarousel").carousel();
+ });
 </script>
 
 <div class="bs-example">
-    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
-    	<!-- Carousel indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-        </ol>   
-        <!-- Wrapper for carousel items -->
-        <div class="carousel-inner">
-            <div class="active item">
-                <%= image_tag("banner_1.png", class:'img-responsive') %>
-         		<div class="carousel-caption">
-                  
-                </div>
-            </div>
-            <div class="item">
-               <%= image_tag("logojikan1.jpg", class:'img-responsive') %>
-                <div class="carousel-caption">
-                 
-                </div>
-            </div>
-            <div class="item">
-                <%= image_tag("logojikan2.jpg", class:'img-responsive') %>
-                <div class="carousel-caption">
-                 
-                </div>
-            </div>
-            <div class="item">
-                <%= image_tag("logojikan3.jpg", class:'img-responsive') %>
-                <div class="carousel-caption">
-                 
-                </div>
-            </div>
-        </div>
-        <!-- Carousel controls -->
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+  <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+   <!-- Carousel indicators -->
+   <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>   
+  <!-- Wrapper for carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      <%= image_tag("banner_1.png", class:'img-responsive') %>
+      <div class="carousel-caption">
+        
+      </div>
     </div>
+    <div class="item">
+     <%= image_tag("logojikan1.jpg", class:'img-responsive') %>
+     <div class="carousel-caption">
+       
+     </div>
+   </div>
+   <div class="item">
+    <%= image_tag("logojikan2.jpg", class:'img-responsive') %>
+    <div class="carousel-caption">
+     
+    </div>
+  </div>
+  <div class="item">
+    <%= image_tag("logojikan3.jpg", class:'img-responsive') %>
+    <div class="carousel-caption">
+     
+    </div>
+  </div>
+</div>
+<!-- Carousel controls -->
+<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+  <span class="glyphicon glyphicon-chevron-left"></span>
+</a>
+<a class="carousel-control right" href="#myCarousel" data-slide="next">
+  <span class="glyphicon glyphicon-chevron-right"></span>
+</a>
+</div>
 </div>
 
 
 
 
 <div class="container">
-   
-        <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-12">
-              <div class="col-md-6">
-                 <h1 class="page-header"><%= image_tag('logojikan.png',class:'logo_1') %>Series
-                 <small>Recientes</small>
-                   
-                </h1>
+ 
+  <!-- Page Header -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-md-6">
+       <h1 class="page-header">Series
+         <small>Recientes</small>
+         
+       </h1>
 
-            <%= form_tag series_temps_path, :method => 'get' do %>
-              <%= text_field_tag :search, params[:search]%>
-              <%= submit_tag "Buscar" %>
-            <% end %>
-            <%= will_paginate @series_temps, renderer: BootstrapPagination::Rails %>
+       <%= search_form_for @q do |f| %>
+       <div class="row">
+        <div class="col-md-6">
 
-              </div>
-              <div class="col-md-6">
-                <% if current_user == User.find(1) %>
-                
-                 <%= link_to image_tag('cinta.png',class:'nuevo'), new_series_temp_path %>
-                 
-                <% end %> 
-              </div>
-               
-            </div>
+
+          <%= f.search_field  :name_or_tag_or_description_or_year_or_director_or_country_cont , class: 'form-control' %>
         </div>
+        <div class="col-md-6">
+          <%= f.submit "Buscar", class: 'btn btn-default' %>
 
-        <br>
-        <!-- /.row -->
+        </div>
+      </div>
 
-        <!-- Projects Row -->
-        
-          <% @series_temps.each do |series_temp| %>
+      
+      <% end %>
+      <%= will_paginate @series_temps, renderer: BootstrapPagination::Rails %>
 
-            <% 
-               youtube_2 = series_temp.video.split("=").last
-               youtube_2 =  "https://www.youtube.com/embed/" + youtube_2  
-              %>
-            
-           <div class="row">
-            <div class="col-md-12 portfolio-item">
-           
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <%= link_to  series_temp do %>
-                   <img src="<%= series_temp.baner %>" class="img-responsive  baja nn">
-                   
-                  <% end %>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                <div class="embed-container baja bb">    
-                 <iframe src="<%= youtube_2 %>" frameborder="0" allowfullscreen></iframe>
-                </div> 
-                </div>
-              </div>
-                
-               
-                <h3><%= link_to  series_temp do %>
-                      <%= series_temp.name %>
-                    <% end %>
-                </h3>
-                
-                <p><%= series_temp.description %></p>
-                  <% if current_user == User.find(1) %>
-                    <td><%= link_to 'Editar', edit_series_temp_path(series_temp) %></td>
-                    <td><%= link_to 'Eliminar', series_temp, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
-                  
-                  
-                  
-                  <% end %>
-            <br></br>
-            
-            
-            </div>
-           
-            </div>
-          <% end %>  
+    </div>
+    <div class="col-md-6">
+      <% if current_user == User.find(1) %>
+      
+      <%= link_to image_tag('cinta.png',class:'nuevo'), new_series_temp_path %>
+      
+      <% end %> 
+    </div>
+    
+  </div>
+</div>
+
+<br>
+<!-- /.row -->
+
+<!-- Projects Row -->
+
+<% @series_temps.each do |series_temp| %>
+
+<% 
+youtube_2 = series_temp.video.split("=").last
+youtube_2 =  "https://www.youtube.com/embed/" + youtube_2  
+%>
+
+<div class="row">
+  <div class="col-md-12 portfolio-item">
+   
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <%= link_to  series_temp do %>
+        <img src="<%= series_temp.baner %>" class="img-responsive  baja nn">
         
-        <!-- /.row -->
-        
-        
-       
+        <% end %>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="embed-container baja bb">    
+         <iframe src="<%= youtube_2 %>" frameborder="0" allowfullscreen></iframe>
+       </div> 
+     </div>
+   </div>
+   
+   
+   <h3><%= link_to  series_temp do %>
+    <%= series_temp.name %>
+    <% end %>
+  </h3>
+  
+  <p><%= series_temp.description %></p>
+  <% if current_user == User.find(1) %>
+  <td><%= link_to 'Editar', edit_series_temp_path(series_temp) %></td>
+  <td><%= link_to 'Eliminar', series_temp, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
+  
+  
+  
+  <% end %>
+  <br></br>
+  
+  
+</div>
+
+</div>
+<% end %>  
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="col-md-6">
+     
+      <%= search_form_for @q do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+
+
+          <%= f.search_field  :name_or_tag_or_description_or_year_or_director_or_country_cont , class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.submit "Buscar", class: 'btn btn-default' %>
+
+        </div>
+      </div>
+
+      
+      <% end %>
+      <%= will_paginate @series_temps, renderer: BootstrapPagination::Rails %>
+
+    </div>
+    
+    
+  </div>
+</div>

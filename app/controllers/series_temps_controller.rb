@@ -4,7 +4,15 @@ class SeriesTempsController < ApplicationController
   # GET /series_temps
   # GET /series_temps.json
   def index
-    @series_temps = SeriesTemp.all.paginate(:page => params[:page], :per_page => 10).order(name: :asc).where(["name LIKE ?","%#{params[:search]}%"])
+      @q = SeriesTemp.ransack(params[:q])
+      @series_temps = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 5).order(name: :asc)    
+  end
+
+  def buscador
+     
+      respond_to do |f|
+        f.js
+      end  
   end
 
   # GET /series_temps/1
@@ -31,7 +39,7 @@ class SeriesTempsController < ApplicationController
 
     respond_to do |format|
       if @series_temp.save
-        format.html { redirect_to @series_temp, notice: 'Series temp was successfully created.' }
+        format.html { redirect_to edit_series_temp_url(@series_temp), notice: 'Series temp was successfully created.' }
         format.json { render :show, status: :created, location: @series_temp }
       else
         format.html { render :new }
@@ -45,7 +53,7 @@ class SeriesTempsController < ApplicationController
   def update
     respond_to do |format|
       if @series_temp.update(series_temp_params)
-        format.html { redirect_to @series_temp, notice: 'Series temp was successfully updated.' }
+        format.html { redirect_to edit_series_temp_url(@series_temp), notice: 'Series temp was successfully updated.' }
         format.json { render :show, status: :ok, location: @series_temp }
       else
         format.html { render :edit }

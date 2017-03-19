@@ -45,16 +45,6 @@ ActiveRecord::Schema.define(version: 20160601033906) do
 
   add_index "comentarios", ["series_temp_id"], name: "index_comentarios_on_series_temp_id", using: :btree
 
-  create_table "comment_series", force: :cascade do |t|
-    t.string   "user"
-    t.text     "description"
-    t.integer  "series_temp_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "comment_series", ["series_temp_id"], name: "index_comment_series_on_series_temp_id", using: :btree
-
   create_table "comments", force: :cascade do |t|
     t.string   "user"
     t.text     "body"
@@ -139,7 +129,6 @@ ActiveRecord::Schema.define(version: 20160601033906) do
 
   add_foreign_key "chapters", "seasons"
   add_foreign_key "comentarios", "series_temps"
-  add_foreign_key "comment_series", "series_temps"
   add_foreign_key "comments", "movies"
   add_foreign_key "seasons", "series_temps"
 end

@@ -19,15 +19,11 @@
 
 
 
-<div class="container-fluid">
         <%     youtube =  @series_temp.video.split("=").last
                youtube =  "https://www.youtube.com/embed/" + youtube  
               %>
    
-         <iframe class="video_y1" src="<%= youtube %>" frameborder="0" allowfullscreen></iframe>
-      
-</div>
-
+    
 <div class="container-fluid">
   <div class="col-lg-6">
     <div class="hidden-xs">
@@ -195,16 +191,16 @@
         </div>
         <div class="col-md-3">
           <%= form_for([@series_temp, @series_temp.comentarios.build]) do |f| %>
-            <p>
+            <p class="boldd">
               <%= f.label :usuario %><br>
-              <%= f.text_field :user , :required => true%>
+              <%= f.text_field :user , :required => true, class: 'form-control'%>
             </p>
-            <p>
+            <p class="boldd">
               <%= f.label :comentario %><br>
-              <%= f.text_area :description , :required => true%>
+              <%= f.text_area :description , :required => true, class: 'form-control'%>
             </p>
             <p>
-              <%= f.submit "Agregar comentario" %>
+              <%= f.submit "Agregar comentario", class: 'btn btn-default form-control' %>
             </p>
           <% end %>
 
@@ -270,9 +266,7 @@
       <section id="pinBoot">
        <% @capitulos.each do |season| %>
        
-      
-       
-      <% season.chapters.each do |chapter| %>
+      <% season.chapters.order('orden DESC').each do |chapter| %>
       
       <article class="white-panel">
         <h2 class="centrar">Temporada <%= chapter.season.orden %></h2>
@@ -305,6 +299,16 @@
       <% end %>
 
     </section>
+<div class="row">
+  <div class="col-md-2">
+  <h2 class="text-right">Temporadas</h2>
+</div>
+<div class="col-md-10">
+  <%= will_paginate @capitulos, renderer: BootstrapPagination::Rails %>
+</div>
+
+</div>
+
     </div>
 
 
@@ -325,6 +329,6 @@
 
 </div>
 
+<%= link_to 'traer', buscador_index_path, remote: true %>
 
-
- 
+ <div id="traer"></div>

@@ -16,101 +16,110 @@
   <% end %>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="field">
           <%= f.label :name %><br>
-          <%= f.text_field :name , class: 'form-control', :required => true %>
+          <%= f.text_field :name , class: 'form-control input-sm', :required => true %>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="field">
           <%= f.label :link %><br>
-          <%= f.text_field :link, class: 'form-control' %>
+          <%= f.text_field :link, class: 'form-control input-sm' %>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="field">
         <%= f.label :video %><br>
-        <%= f.text_field :video, class: 'form-control', :required => true %>
+        <%= f.text_field :video, class: 'form-control input-sm', :required => true %>
       </div>
   
     </div>
-  </div>
-</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="field">
+
+    <div class="col-md-2">
+  
         <%= f.label :tag %><br>
-        <%= f.text_field :tag , class: 'form-control' %>
-      </div>
+        <%= f.text_field :tag , class: 'form-control input-sm' %>
+  
     </div>
-    <div class="col-md-4">
-      <div class="field">
+    <div class="col-md-2">
+     
         <%= f.label :description %><br>
-        <%= f.text_area :description , class: 'form-control'%>
-      </div>
+        <%= f.text_area :description , class: 'form-control input-sm'%>
+
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
       
-  <div class="field">
+
     <%= f.label :year %><br>
-    <%= f.text_field :year , class: 'form-control' %>
-  </div>
-    </div>
+    <%= f.text_field :year , class: 'form-control input-sm' %>
+
+
   </div>
 </div>
 
-<div class="container-fluid">
+
+
+
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="field">
       <%= f.label :director %><br>
-      <%= f.text_field :director, class: 'form-control'%>
+      <%= f.text_field :director, class: 'form-control input-sm'%>
     </div>
   
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
        <div class="field">
       <%= f.label :duration %><br>
-      <%= f.text_field :duration, class: 'form-control' %>
+      <%= f.text_field :duration, class: 'form-control input-sm' %>
     </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="field">
         <%= f.label :country %><br>
-        <%= f.text_field :country, class: 'form-control' %>
+        <%= f.text_field :country, class: 'form-control input-sm' %>
       </div>
     </div>
-  </div>
-</div>
-<br>
 
-    <div class="container-fluid">
-      <div class="col-md-6">
+
+<div class="col-md-2">
    
 
     <%= f.label :banner_1280x720px %><br>
-    <%= f.text_field :baner, class: 'form-control' %>  
+    <%= f.text_field :baner, class: 'form-control input-sm' %>  
     </div>
   
-  <div class="col-md-6">
+  <div class="col-md-2">
         <%= f.label :imagen_logo_mitad_850x80px %>
       <%= f.text_field :imagen, class:'form-control' %>
     </div>
-  
-    </div>
+
+
+
+  </div>
+
+
+<br>
 
 
 
 
-  
-  <br>
-  
-  <div class="container-fluid">
-    
+
+
+
   <div id="season">
+
+
+
+
+
+
+
+
+
+
     <%= f.fields_for :seasons do |season| %>
      <%= render 'season_fields', f: season %>
     <% end %>     
@@ -121,8 +130,28 @@
      
   </div>
   
-  </div>
+
+
+
+
+</div>
+
+
+
+
+<br>
+
+
+
+
+
   
+  <br>
+  
+
+    
+
+
   
   <div class="actions">
     <%= f.submit %>
@@ -131,6 +160,8 @@
 
      
     <% end %> 
+
+
 
 
 

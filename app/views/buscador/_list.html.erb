@@ -1,0 +1,19 @@
+<div class="col-md-6">
+	
+	<%= search_form_for @q do |f| %>
+	<div class="row">
+		<div class="col-md-6">
+
+
+			<%= f.search_field  :name_or_tag_or_description_or_year_or_director_or_country_cont , class: 'form-control' %>
+		</div>
+		<div class="col-md-6">
+			<%= f.submit "Buscar", class: 'btn btn-default' %>
+
+		</div>
+	</div>
+
+	
+	<% end %>
+
+</div>
